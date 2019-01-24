@@ -1,0 +1,24 @@
+/Задание 2/
+Подключиться по telnet к http://wikipedia.org и отправить запрос:
+
+Запрос:
+
+GET /wiki/страница HTTP/1.1   //GET-это метод, с помощью которого можно получить доступ к существующему ресурсу; wiki - это URL страницы, к которой мы обращаемся; HTTP/1.1 - это версия протокола HTTP 
+Host: ru.wikipedia.org        // Доменное имя хоста запрашиваемого ресурса.
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; ru; rv:1.9b5) Gecko/2008050509 Firefox/3.0b5   // Указание программного обеспечения клиента и его характеристики
+Accept: text/html             // Указывает, что клиент понимает текстовые документы, при этом эти документы должны быть формата html
+Connection: close             // Соединение закрывается
+
+Ответ сервера:
+HTTP/1.1 301 TLS Redirect     //HTTP/1.1 - это версия протокола HTTP; кодом 301 означает, что страница с запрашиваемого ресурса была перемещена навсегда
+Date: Tue, 27 Nov 2018 19:34:43 GMT   //Дата, когда был сформирован ответ
+Server: Varnish              //Название веб-сервера
+X-Varnish: 3451333331
+X-Cache: cp3041 int
+X-Cache-Status: int-front
+Set-Cookie: WMF-Last-Access=27-Nov-2018;Path=/;HttpOnly;secure;Expires=Thu, 27 Dec 2018 12:00:00 GMT
+Set-Cookie: WMF-Last-Access-Global=27-Nov-2018;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Thu, 27 Dec 2018 12:00:00 GMT
+X-Client-IP: 212.191.94.40    //ip клиента
+Location: https://ru.wikipedia.org/wiki/страница //Новый адрес расположения сайта, сюда происходит перенаправление
+Content-Length: 0            //Размер содержимого в байтах
+Connection: close            //Соединение закрывается
