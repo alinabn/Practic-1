@@ -1,0 +1,181 @@
+# /Задание 3/
+Отправить запросы на http://httpbin.org, проанализировать ответ и код состояния. Описать работу HTTP протокола в каждом запросе.
+
+* 1) ip
+
+Запрос
+open httpbin.org 80
+GET ip HTTP1.1
+Host httpbin.org
+Accept 
+
+Ответ
+HTTP1.1 200 OK      			//Код состояния 200 ОК. Запрос прошел успешно
+Connection keep-alive        		//Постоянное соединение
+Server gunicorn19.9.0         		//Инф. о сервере
+Date Tue, 27 Nov 2018 22:14:43 GMT 	//Дата
+Content-Type applicationjson		//Тип контента
+Content-Length 31			//Длина контента
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+Via 1.1 vegur
+
+{
+   origin 212.191.94.40        		//В ответе содержится мой ip-адрес
+                           }
+
+* 2) get 
+
+Запрос
+open httpbin.org 80
+GET getfoo=bar&1=2&20&error=True HTTP1.1
+Host httpbin.org
+Accept 
+
+Ответ
+HTTP1.1 200 OK                           //Код состояния 200 ОК. Запрос прошел успешно успешно
+Connection keep-alive 			 //Поддерживает постоянное соединение
+Server gunicorn19.9.0                    //Инф. о сервере
+Date Tue, 27 Nov 2018 22:27:08 GMT 	 //Дата
+Content-Type applicationjson		 //Тип контента
+Content-Length 281			 //Длина контента
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+Via 1.1 vegur
+
+{
+   args {                                //Переданные параметры
+             1 2,
+             20 ,
+             error True,
+             foo bar
+            },
+   headers {                      	  //Заголовки
+              Accept ,
+              Connection close,
+              Host httpbin.org
+            },
+   origin 212.191.94.40,        
+   url httphttpbin.orggetfoo=bar&1=2&2%2F0&error=True  		//Адрес ресурса, который мы запросили
+}
+
+* 3) post
+
+Запрос
+open httpbin.org 80
+POST post HTTP1.1
+Host httpbin.org
+Accept 
+Content-Length 35
+Content-Type applicationx-www-form-urlencoded
+
+foo=bar&1=2&2%2F0=&error=True
+
+Ответ на запрос
+HTTP1.1 200 OK                             //Код состояния 200 ОК. Запрос прошел успешно
+Connection keep-alive                      //Постоянное соединение
+Servergunicorn19.9.0                       //Инф. о сервере
+Date Tue, 27 Nov 2018 22:34:18 GMT	   //Дата
+Content-Type applicationjson               //Тип контента
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+X-Powered-By Flask
+X-Processed-Time 0.000952959060669
+Content-Length 416			   //Длина контента
+Via 1.1 vegur
+
+{
+  args {},                        //Переданные параметры
+  data , 
+  files {}, 
+  form {
+    1 2, 
+    20 , 
+    error Truernrnrn, 
+    foo bar
+  }, 
+  headers {                        //Заголовки
+    Accept , 
+    Connection close, 
+    Content-Length 35, 
+    Content-Type applicationx-www-form-urlencoded, 
+    Host httpbin.org
+  }, 
+  json null, 
+  origin 212.191.94.40,       
+  url httphttpbin.orgpost           //Адрес ресурса, который мы запросили
+
+}
+
+* 4) cookiesset
+
+Запрос
+open httpbin.org 80
+GET cookiessetcountry=Ru HTTP1.1
+Host httpbin.org
+Accept 
+
+Ответ
+HTTP1.1 302 FOUND			//Код состояния 302. Данные были перемещены
+Connection keep-alive                   //Постоянное соединение
+Server gunicorn19.9.0                   //Инф. о сервере
+Date Tue, 27 Nov 2018 22:45:03 GMT	//Дата
+Content-Type texthtml; charset=utf-8	//Тип контента
+Content-Length 223			//Длина контента
+Location cookies			//Данные перемещены по адресу cookies
+Set-Cookie country=Ru; Path=                
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+Via 1.1 vegur
+
+!DOCTYPE HTML PUBLIC -W3CDTD HTML 3.2 FinalEN	//html разметка
+titleRedirecting...title
+pYou should be redirected automatically to target URL a href=cookiescookiesa.  If not click the link.
+
+* 5) cookies
+
+Запрос
+open httpbin.org 80
+GET cookies HTTP1.1
+Host httpbin.org
+Accept 
+
+Ответ
+HTTP1.1 200 OK                          //Код состояния 200 ОК. Запрос прошел успешноуспешно
+Connection keep-alive			//Постоянное соединение
+Server gunicorn19.9.0			//Инф. о сервере
+Date Tue, 27 Nov 2018 22:51:56 GMT	//Дата
+Content-Type applicationjson 		//Тип контента
+Content-Length 20			//Длина контента
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+Via 1.1 vegur
+
+{
+   cookies {}    			//Пустые cookies
+                }
+
+* 6) redirect
+
+Запрос
+open httpbin.org 80
+GET redirect4 HTTP1.1
+Host httpbin.org
+Accept 
+
+Ответ
+HTTP1.1 302 FOUND			//Код состояния 302. Данные были перемещены
+Connection keep-alive			//Постоянное соединение
+Server gunicorn19.9.0                   //Инф. о сервере
+Date Tue, 27 Nov 2018 23:03:12 GMT	//Дата
+Content-Type texthtml; charset=utf-8	//Тип контента
+Content-Length 247			//Длина контента
+Location relative-redirect3		//Данные перемещены по адресу relative-redirect3
+Access-Control-Allow-Origin 
+Access-Control-Allow-Credentials true
+Via 1.1 vegur
+
+!DOCTYPE HTML PUBLIC -W3CDTD HTML 3.2 FinalEN	//html разметку
+titleRedirecting...title
+h1Redirecting...h1
+pYou should be redirected automatically to target URL a href=relative-redirect3relative-redirect3a.  If not click the link.
