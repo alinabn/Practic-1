@@ -1,0 +1,73 @@
+/Задние 4/
+*Создать HTML форму c action="http://httpbin.org/post" method="POST" и enctype="multipart/form-data"
+*Добавить в форму поля firstname, lastname, group, message (textarea), myimg (file).
+*Проверить результат отправки данных формы.
+
+
+Форма в формате HTML:
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> Html форма </title>
+	</head>
+	<body>
+		<form action="http://httpbin.org/post" enctype="multipart/form-data" method="POST">
+			<p><b>Имя:</b><br>
+				<input type="text" name="firstname" size="50">
+			</p>
+			<p><b>Фамилия:</b><br>
+				<input type="text" name="lastname" size="50">
+			</p>
+			<p><b>Номер группы:</b><br>
+				<input type="text" name="group" size="50">
+			</p>
+			<p><b>Сообщение:</b><br>
+				<input type="textarea"  name="message" size="50">
+			</p>
+			<p><b>Файл:</b><br>
+				<input type="file" name="myimg">
+			</p>
+			<p><input type="submit" value="Отправить">
+			</p>
+		</form>
+	</body>
+</html>
+
+Ответ:
+
+Ответ записан в формате JSON
+
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {              // В отправленную форму входят следующие параметры:
+    "firstname": "Alina", 
+    "group": "NMT-362701", 
+    "lastname": "Boncheva", 
+    "message": "text:)", 
+    "myimg": ""
+  }, 
+  "headers": {           // Перечисление заголовков запроса
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",   //Файлы,которые поддерживаются браузером клиента
+    "Accept-Encoding": "gzip, deflate",                                                                  //Список способов кодирования, для шифровки тела сообщения.
+    "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",                                            //Список языков, которые на момент запроса указаны в браузере клиента.
+    "Cache-Control": "max-age=0",                                                                        
+    "Connection": "close", 
+    "Content-Length": "80",                                                                              //Размер передаваемого документа в байтах
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org",                                                                             	 //Доменное имя хоста запрашиваемого ресурса
+    "Origin": "null", 
+    "Upgrade-Insecure-Requests": "1", 									 //Браузер хочет получать сайт в защищенном режиме
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"   //Указание программного обеспечения клиента и его характеристики
+  }, 
+  "json": null,                  
+  "origin": "178.46.120.5",                     // ip-адрес клиента
+  "url": "http://httpbin.org/post"     		// URL, который был передан с запросом
+
+
+Форма была открыта в браузере, поля были заполнены. При нажатии кнопки Submit произшла отправка POST-запросом данной формы.
+Ответ от сервера пришел в формате JSON. В ответе есть данные формы, отправленный файл, заголовки, отправленные браузером,
+ip моего компьютера, адрес html страницы.
